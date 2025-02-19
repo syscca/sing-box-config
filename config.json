@@ -20,7 +20,7 @@
         ],
         "rules": [
             {
-                "domain_suffix": [".cn"],
+                "rule_set": ["geosite-cn", "geoip-cn"],
                 "server": "dns_direct"
             }
         ],
