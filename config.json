@@ -28,7 +28,7 @@
         "strategy": "prefer_ipv4"
     },
     "route": {
-        "default_domain_resolver": "dns_proxy",
+        "default_domain_resolver": "dns_direct",
         "rule_set": [
             {
                 "tag": "geoip-cn",
