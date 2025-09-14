@@ -13,3 +13,5 @@ sing-box version 1.12.8
 在外国ios sing-box 1.14.4 配置
 
 ios_id_config.json
+
+安卓和华为手机跟win配置通用
