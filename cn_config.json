@@ -31,7 +31,7 @@
         "strategy": "prefer_ipv4"
     },
     "route": {
-        "default_domain_resolver": "google",
+        "default_domain_resolver": "ali",
         "rule_set": [
             {
                 "tag": "geoip-cn",
@@ -76,7 +76,7 @@
                 "outbound": "proxy"
             }
         ],
-        "final": "proxy",
+        "final": "direct",
         "auto_detect_interface": true
     },
     "inbounds": [
