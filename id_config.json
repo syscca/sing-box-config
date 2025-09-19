@@ -7,16 +7,17 @@
         "servers": [
             {
                 "tag": "local",
-                "type": "local"
+                "type": "tls",
+                "server": "8.8.8.8"
             },
             {
                 "tag": "ali",
-                "type": "udp",
+                "type": "https",
                 "server": "223.5.5.5"
             },
             {
                 "tag": "google",
-                "type": "udp",
+                "type": "tls",
                 "server": "8.8.8.8",
                 "detour": "proxy"
             }
@@ -139,3 +140,4 @@
         }
     ]
 }
+
