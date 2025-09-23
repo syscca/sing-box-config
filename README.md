@@ -2,6 +2,10 @@
 
 sing-box version 1.12.8
 
+windows 控制脚本
+
+sing-box-control.bat
+
 在国内配置
 
 ./sing-box.exe -c cn_config.json run
