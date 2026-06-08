@@ -19,3 +19,8 @@ sing-box-control.bat
 ios_id_config.json
 
 安卓和华为手机跟win配置通用
+
+windows 11 最新版
+sing-box version 1.13.12
+
+./sing-box.exe -c config.json
