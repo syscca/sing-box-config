@@ -54,12 +54,12 @@
     {
       "tag": "proxy",
       "type": "trojan",
-      "server": "alyhk3.syscca.com",
+      "server": "域名",
       "server_port": 443,
-      "password": "50028:VYRPnYV4Bk",
+      "password": "密码",
       "tls": {
         "enabled": true,
-        "server_name": "alyhk3.syscca.com"
+        "server_name": "密码"
       }
     },
     {
