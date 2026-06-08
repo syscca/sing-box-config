@@ -1,0 +1,141 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote",
+        "type": "https",
+        "server": "8.8.8.8",
+        "path": "/dns-query",
+        "detour": "proxy"
+      },
+      {
+        "tag": "local",
+        "type": "https",
+        "server": "223.5.5.5",
+        "path": "/dns-query"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": ["geosite-category-ads-all"],
+        "action": "reject"
+      },
+      {
+        "rule_set": ["geosite-reddit", "geosite-netflix", "geosite-pornhub"],
+        "action": "route",
+        "server": "remote"
+      }
+    ],
+    "final": "local",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "sing-box",
+      "stack": "system",
+      "address": ["172.19.0.1/30"],
+      "auto_route": true,
+      "strict_route": true
+    },
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 7890
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "proxy",
+      "type": "trojan",
+      "server": "alyhk3.syscca.com",
+      "server_port": 443,
+      "password": "50028:VYRPnYV4Bk",
+      "tls": {
+        "enabled": true,
+        "server_name": "alyhk3.syscca.com"
+      }
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "rule_set": ["geosite-category-ads-all"],
+        "action": "reject"
+      },
+      {
+        "rule_set": ["geosite-reddit", "geosite-netflix", "geosite-pornhub"],
+        "action": "route",
+        "outbound": "proxy"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-category-ads-all",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-reddit",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-reddit.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-netflix",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-netflix.srs",
+        "download_detour": "proxy"
+      },
+      {
+        "tag": "geosite-pornhub",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-pornhub.srs",
+        "download_detour": "proxy"
+      }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "local"
+  }
+}
